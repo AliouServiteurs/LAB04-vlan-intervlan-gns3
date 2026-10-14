@@ -48,7 +48,7 @@ La topologie utilisée comprend deux VPCS, un switch Ethernet intégré à GNS3 
 ```
 
 > **À insérer :** capture de la topologie GNS3.  
-> Nom conseillé : `captures/01-topologie-lab04.png`
+![Topologie GNS3](captures/01-topologie-lab04.png)
 
 ## 3. Plan d'adressage
 
@@ -73,8 +73,7 @@ Dans la configuration du switch Ethernet intégré :
 
 Le trunk permet de transporter sur un même lien les trames associées aux VLAN 10 et 20. Les ports d'accès relient chacun un poste à son VLAN.
 
-> **À insérer :** capture de la configuration des ports/VLAN du switch.  
-> Nom conseillé : `captures/02-configuration-vlan-switch.png`
+![Configuration des ports/VLAN du switch](captures/02-configuration-vlan-switch.png)
 
 > **Note de reproductibilité :** le switch Ethernet intégré de GNS3 n'a pas nécessairement les mêmes commandes CLI qu'un switch Cisco IOS. La configuration s'effectue ici via ses paramètres dans l'interface graphique. Les noms exacts des options peuvent varier selon la version de GNS3.
 
@@ -154,8 +153,10 @@ FastEthernet0/1            unassigned      YES unset  administratively down down
 
 Les sous-interfaces `FastEthernet0/0.10` et `FastEthernet0/0.20` étaient `up/up`. Cela confirme leur état opérationnel, mais les tests de connectivité restent nécessaires pour vérifier le chemin de bout en bout.
 
-> **À insérer :** capture des sous-interfaces et de la table de routage.  
-> Noms conseillés : `captures/03-sous-interfaces-routeur.png` et `captures/06-table-routage.png`
+![Sous-interfaces et de la table de routage](/captures/03-sous-interfaces-routeur.png)
+
+![La table de routage](/captures/06-table-routage.png)
+
 
 ## 8. Tests de connectivité
 
@@ -187,8 +188,11 @@ Les tests effectués depuis PC1 et PC2 vers les deux passerelles ont réussi : c
 | PC2 → `192.168.10.1` | Réussi, 5 réponses sur 5 |
 | PC1 ↔ PC2 | Réussi, confirmé lors du test final |
 
-> **À insérer :** captures des tests de ping.  
-> Noms conseillés : `captures/04-ping-passerelles.png` et `captures/05-ping-inter-vlan.png`
+> captures des tests de ping.  
+![Captures des test de ping](/captures/04-ping-passerelles.png)
+
+![Captures des test de ping](/captures/05-ping-inter-vlan.png)
+
 
 ## 9. Comment fonctionne le routage inter-VLAN ?
 
@@ -215,44 +219,11 @@ Si les pings échouent, vérifier dans cet ordre :
 
 Une interface `up/up` ne suffit pas, à elle seule, à garantir que le trunk transporte correctement les deux VLAN. Il faut valider avec les tests de bout en bout.
 
-## 11. Captures d'écran recommandées
 
-Créer un dossier `captures/` à la racine du laboratoire et y placer les images suivantes :
-
-```text
-captures/
-├── 01-topologie-lab04.png
-├── 02-configuration-vlan-switch.png
-├── 03-sous-interfaces-routeur.png
-├── 04-ping-passerelles.png
-├── 05-ping-inter-vlan.png
-└── 06-table-routage.png
-```
-
-N'inclure que des captures réelles issues de votre environnement. Les noms de fichiers ci-dessus sont des suggestions pour organiser le dépôt.
-
-## 12. Conclusion
+## 11. Conclusion
 
 Ce laboratoire a permis de mettre en place deux réseaux logiquement séparés au moyen des VLAN 10 et 20, puis d'assurer leur communication grâce au routage inter-VLAN sur un routeur Cisco 2691. La configuration des sous-interfaces 802.1Q et les tests de connectivité ont validé le fonctionnement de la topologie.
 
 Ce type de configuration constitue une base pour approfondir la segmentation réseau, les ACL inter-VLAN, la supervision du trafic et les mécanismes de sécurité réseau.
 
 ---
-
-## Structure GitHub suggérée
-
-```text
-LAB04-vlan-intervlan-gns3/
-├── README.md
-├── captures/
-│   ├── 01-topologie-lab04.png
-│   ├── 02-configuration-vlan-switch.png
-│   ├── 03-sous-interfaces-routeur.png
-│   ├── 04-ping-passerelles.png
-│   ├── 05-ping-inter-vlan.png
-│   └── 06-table-routage.png
-└── projet/
-    └── lab04.gns3
-```
-
-Le nom exact du fichier de projet GNS3 peut être différent. Copiez le fichier de projet et ses éventuels fichiers associés dans `projet/` en conservant la structure produite par GNS3. Ne publiez pas d'images IOS propriétaires ni d'autres fichiers soumis à licence sans autorisation.
